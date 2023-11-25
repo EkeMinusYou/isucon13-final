@@ -10,7 +10,7 @@ EnvironmentFile=/home/isucon/env.sh
 
 User=isucon
 Group=isucon
-ExecStart=/home/isucon/webapp/go/isupipe -cpuprofile cpu.pprof -fcpuprofile fcpu.pprof
+ExecStart=/home/isucon/webapp/go/isupipe
 ExecStop=/bin/kill -s QUIT $MAINPID
 
 Restart=on-failure

@@ -16,6 +16,7 @@ import (
 	"github.com/jmoiron/sqlx"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"golang.org/x/sync/errgroup"
 
 	"github.com/gorilla/sessions"
 	"github.com/labstack/echo-contrib/session"
@@ -60,7 +61,7 @@ func connectDB(logger echo.Logger) (*sqlx.DB, error) {
 	// 環境変数がセットされていなかった場合でも一旦動かせるように、デフォルト値を入れておく
 	// この挙動を変更して、エラーを出すようにしてもいいかもしれない
 	conf.Net = "tcp"
-	conf.Addr = net.JoinHostPort("127.0.0.1", "3306")
+	conf.Addr = ""
 	conf.User = "isucon"
 	conf.Passwd = "isucon"
 	conf.DBName = "isupipe"
@@ -108,9 +109,25 @@ func connectDB(logger echo.Logger) (*sqlx.DB, error) {
 }
 
 func initializeHandler(c echo.Context) error {
-	if out, err := exec.Command("../sql/init.sh").CombinedOutput(); err != nil {
-		c.Logger().Warnf("init.sh failed with err=%s", string(out))
-		return echo.NewHTTPError(http.StatusInternalServerError, "failed to initialize: "+err.Error())
+	var errGroup errgroup.Group
+	errGroup.Go(func() error {
+		if out, err := exec.Command("../sql/init.sh").CombinedOutput(); err != nil {
+			c.Logger().Warnf("init.sh failed with err=%s", string(out))
+			return echo.NewHTTPError(http.StatusInternalServerError, "failed to initialize: "+err.Error())
+		}
+		return nil
+	})
+	errGroup.Go(func() error {
+		ipAddress := "192.168.0.12"
+		_, err := http.Get("http://" + ipAddress + ":8080/api/initialize")
+		if err != nil {
+			c.Logger().Warnf("failed to initialize: " + err.Error())
+			return echo.NewHTTPError(http.StatusInternalServerError, "failed to initialize: "+err.Error())
+		}
+		return nil
+	})
+	if err := errGroup.Wait(); err != nil {
+		return err
 	}
 
 	// iconsのディレクトリの中身を全て削除

@@ -7,7 +7,7 @@ ISUCON_2:=isucon-2
 ISUCON_3:=isucon-3
 NGINX_HOST:=isucon-1
 WEBAPP_HOST:=isucon-1
-MYSQL_HOST:=isucon-1
+MYSQL_HOST:=isucon-2
 
 .PHONY: setup-shell
 setup-shell:
