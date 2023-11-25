@@ -381,7 +381,7 @@ func fillUserResponse(ctx context.Context, tx *sqlx.Tx, userModel UserModel) (Us
 	}
 
 	var image []byte
-	image, err := os.ReadFile(fmt.Sprintf("./icons/%d.jpg", userModel.ID))
+	_, err := os.Stat(fmt.Sprintf("./icons/%d.jpg", userModel.ID))
 	if err != nil {
 		if os.IsNotExist(err) {
 			image, err = os.ReadFile(fallbackImage)
@@ -389,6 +389,11 @@ func fillUserResponse(ctx context.Context, tx *sqlx.Tx, userModel UserModel) (Us
 				return User{}, err
 			}
 		} else {
+			return User{}, err
+		}
+	} else {
+		image, err = os.ReadFile(fmt.Sprintf("./icons/%d.jpg", userModel.ID))
+		if err != nil {
 			return User{}, err
 		}
 	}
