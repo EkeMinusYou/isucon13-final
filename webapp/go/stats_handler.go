@@ -77,8 +77,8 @@ func getUserStatisticsHandler(c echo.Context) error {
 	}
 	defer tx.Rollback()
 
-	var user UserModel
-	if err := tx.GetContext(ctx, &user, "SELECT * FROM users WHERE name = ?", username); err != nil {
+	var requestUser UserModel
+	if err := tx.GetContext(ctx, &requestUser, "SELECT * FROM users WHERE name = ?", username); err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			return echo.NewHTTPError(http.StatusBadRequest, "not found user that has the given username")
 		} else {
@@ -122,10 +122,15 @@ func getUserStatisticsHandler(c echo.Context) error {
 	if err := tx.SelectContext(ctx, &tipsList, query); err != nil && !errors.Is(err, sql.ErrNoRows) {
 		return echo.NewHTTPError(http.StatusInternalServerError, "failed to get tips: "+err.Error())
 	}
+	// request user
+	var totalReactions int64
 
 	for _, user := range users {
 		var reactions int64
 		for _, r := range reactionsList {
+			if r.UserID == requestUser.ID {
+				totalReactions = r.Reactions
+			}
 			if r.UserID == user.ID {
 				reactions = r.Reactions
 				break
@@ -157,22 +162,11 @@ func getUserStatisticsHandler(c echo.Context) error {
 		rank++
 	}
 
-	// リアクション数
-	var totalReactions int64
-	query = `SELECT COUNT(*) FROM users u
-	   INNER JOIN livestreams l ON l.user_id = u.id
-	   INNER JOIN reactions r ON r.livestream_id = l.id
-	   WHERE u.name = ?
-	`
-	if err := tx.GetContext(ctx, &totalReactions, query, username); err != nil && !errors.Is(err, sql.ErrNoRows) {
-		return echo.NewHTTPError(http.StatusInternalServerError, "failed to count total reactions: "+err.Error())
-	}
-
 	// ライブコメント数、チップ合計
 	var totalLivecomments int64
 	var totalTip int64
 	var livestreams []*LivestreamModel
-	if err := tx.SelectContext(ctx, &livestreams, "SELECT * FROM livestreams WHERE user_id = ?", user.ID); err != nil && !errors.Is(err, sql.ErrNoRows) {
+	if err := tx.SelectContext(ctx, &livestreams, "SELECT * FROM livestreams WHERE user_id = ?", requestUser.ID); err != nil && !errors.Is(err, sql.ErrNoRows) {
 		return echo.NewHTTPError(http.StatusInternalServerError, "failed to get livestreams: "+err.Error())
 	}
 
