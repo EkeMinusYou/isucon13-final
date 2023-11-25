@@ -90,14 +90,8 @@ func getIconHandler(c echo.Context) error {
 
 	username := c.Param("username")
 
-	tx, err := dbConn.BeginTxx(ctx, nil)
-	if err != nil {
-		return echo.NewHTTPError(http.StatusInternalServerError, "failed to begin transaction: "+err.Error())
-	}
-	defer tx.Rollback()
-
 	var user UserModel
-	if err := tx.GetContext(ctx, &user, "SELECT * FROM users WHERE name = ?", username); err != nil {
+	if err := dbConn.GetContext(ctx, &user, "SELECT * FROM users WHERE name = ?", username); err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			return echo.NewHTTPError(http.StatusNotFound, "not found user that has the given username")
 		}
@@ -105,12 +99,23 @@ func getIconHandler(c echo.Context) error {
 	}
 
 	var image []byte
-	if err := tx.GetContext(ctx, &image, "SELECT image FROM icons WHERE user_id = ?", user.ID); err != nil {
-		if errors.Is(err, sql.ErrNoRows) {
-			return c.File(fallbackImage)
+	if _, err := os.Stat(fmt.Sprintf("./icons/%d.jpg", user.ID)); err != nil {
+		if os.IsNotExist(err) {
+			if err := dbConn.GetContext(ctx, &image, "SELECT image FROM icons WHERE user_id = ?", user.ID); err != nil {
+				if errors.Is(err, sql.ErrNoRows) {
+					return c.File(fallbackImage)
+				} else {
+					return echo.NewHTTPError(http.StatusInternalServerError, "failed to get user icon: "+err.Error())
+				}
+			}
+			if err := os.WriteFile(fmt.Sprintf("./icons/%d.jpg", user.ID), image, 0666); err != nil {
+				fmt.Println("failed to write icon file: " + err.Error())
+			}
 		} else {
-			return echo.NewHTTPError(http.StatusInternalServerError, "failed to get user icon: "+err.Error())
+			return echo.NewHTTPError(http.StatusInternalServerError, "failed to stat icon file: "+err.Error())
 		}
+	} else {
+		image, err = os.ReadFile(fmt.Sprintf("./icons/%d.jpg", user.ID))
 	}
 
 	return c.Blob(http.StatusOK, "image/jpeg", image)
@@ -154,10 +159,15 @@ func postIconHandler(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusInternalServerError, "failed to get last inserted icon id: "+err.Error())
 	}
 
+	if err := os.WriteFile(fmt.Sprintf("../icons/%d.jpg", userID), req.Image, 0666); err != nil {
+		fmt.Println("failed to write icon file: " + err.Error())
+	}
+
 	if err := tx.Commit(); err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, "failed to commit: "+err.Error())
 	}
 
+	// iconID返す必要ある？
 	return c.JSON(http.StatusCreated, &PostIconResponse{
 		ID: iconID,
 	})
