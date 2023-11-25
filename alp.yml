@@ -3,3 +3,20 @@ sort: sum
 reverse: true
 limit: 65536
 matching_groups:
+  - /api/livestream/[0-9]+/reaction
+  - /api/user/.+/icon
+  - /api/user/.+/theme
+  - /api/user/.+/statistics
+  - /api/user/.+
+  - /api/livestream/[0-9]+/livecomment
+  - /api/livestream/[0-9]+/enter
+  - /api/livestream/.+/statistics
+  - /api/livestream/[0-9]+/report
+  - /api/livestream/[0-9]+/exit
+  - /api/livestream/[0-9]+/ngwords
+  - /api/livestream/[0-9]+/moderate
+  - /api/livestream/[0-9]
+  - /watch/[0-9]+
+  - /assets/.+js
+  - /assets/.+css
+  - /assets/.+png
