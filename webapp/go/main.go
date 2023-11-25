@@ -118,7 +118,7 @@ func initializeHandler(c echo.Context) error {
 	})
 }
 
-func main() {
+func Run() {
 	e := echo.New()
 	e.Debug = true
 	e.Logger.SetLevel(echolog.DEBUG)

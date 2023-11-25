@@ -13,7 +13,10 @@ require (
 	golang.org/x/crypto v0.11.0
 )
 
+require github.com/google/pprof v0.0.0-20211214055906-6f57359322fd // indirect
+
 require (
+	github.com/felixge/fgprof v0.9.3
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
 	github.com/gorilla/context v1.1.1 // indirect
 	github.com/gorilla/securecookie v1.1.2 // indirect
