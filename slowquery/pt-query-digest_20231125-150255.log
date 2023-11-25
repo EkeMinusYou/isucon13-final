@@ -1,0 +1,699 @@
+
+# 12.3s user time, 70ms system time, 44.38M rss, 389.99G vsz
+# Current date: Sat Nov 25 14:59:20 2023
+# Hostname: YusukenoMac-mini.local
+# Files: slowquery/log/mysql-slow.log
+# Overall: 288.71k total, 91 unique, 513.71 QPS, 0.90x concurrency _______
+# Time range: 2023-11-25T05:49:09 to 2023-11-25T05:58:31
+# Attribute          total     min     max     avg     95%  stddev  median
+# ============     ======= ======= ======= ======= ======= ======= =======
+# Exec time           508s     1us   587ms     2ms     7ms     5ms   316us
+# Lock time             1s       0    57ms     3us     1us   143us     1us
+# Rows sent        356.82k       0   7.42k    1.27    0.99   39.90    0.99
+# Rows examine     141.89M       0  14.03k  515.33   1.39k 1013.79    1.96
+# Query size        33.82M       5   1.94M  122.85  329.68   3.84k   54.21
+
+# Profile
+# Rank Query ID                            Response time Calls R/Call V/M 
+# ==== =================================== ============= ===== ====== ====
+#    1 0x42EF7D7D98FBCC9723BF896EBFC51D24  68.1755 13.4%  5432 0.0126  0.01 SELECT records
+#    2 0x38BC86A45F31C6B1EE324671506C898A  56.1113 11.0% 20822 0.0027  0.00 SELECT themes
+#    3 0xF1B8EF06D6CA63B24BFF433E06CCEB22  51.3539 10.1%  5161 0.0100  0.01 SELECT users livestreams livecomments
+#    4 0xDB74D52D39A7090F224C4DEEAF3028C9  48.3706  9.5%  5165 0.0094  0.01 SELECT users livestreams reactions
+#    5 0x4ADE2DC90689F1C4891749AF54FB8D14  41.6328  8.2% 46471 0.0009  0.00 DELETE SELECT livecomments
+#    6 0x3D83BC87F3B3A00D571FFC8104A6E50C  28.8863  5.7%  4261 0.0068  0.01 SELECT records
+#    7 0xFBC5564AE716EAE82F20BFB45F6C37E7  25.2985  5.0% 52653 0.0005  0.00 SELECT tags
+#    8 0xFD38427AE3D09E3883A680F7BAF95D3A  24.6899  4.9% 28450 0.0009  0.00 SELECT livestreams livecomments
+#    9 0x64CC8A4E8E4B390203375597CE4D611F  23.2239  4.6%   442 0.0525  0.01 SELECT ng_words
+#   10 0x59F1B6DD8D9FEC059E55B3BFD624E8C3  21.7525  4.3%   873 0.0249  0.01 SELECT reservation_slots
+#   11 0xC499D81D570D361DB61FC43A94BB888A  20.5848  4.0% 28451 0.0007  0.00 SELECT livestreams reactions
+#   12 0xFFFCA4D67EA0A788813031B8BBC3B329  11.3522  2.2%  3139 0.0036  0.00 COMMIT
+#   13 0xEA1E6309EEEFF9A6831AD2FB940FC23C  10.5659  2.1% 20569 0.0005  0.00 SELECT users
+#   14 0xF7144185D9A142A426A36DC55C1D2623   9.5599  1.9% 12771 0.0007  0.00 SELECT livestream_tags
+#   15 0xD6032FE08E1FE706A928B8B7CBA06B85   5.5576  1.1%  9935 0.0006  0.00 SELECT livestreams
+#   16 0x22279D81D51006139E0C76405B54C261   5.4700  1.1%  6214 0.0009  0.00 SELECT domains domainmetadata
+#   17 0x859BBB7E9D760686137A944406874C4D   5.4136  1.1%   245 0.0221  0.01 DELETE records
+#   18 0xA3401CA3ABCC04C3AB221DB8AD5CBF26   5.1194  1.0%   101 0.0507  0.02 UPDATE reservation_slots
+#   19 0x9EAD6C0CE525E3693EE27FFC9AAF05A3   4.9845  1.0%   100 0.0498  0.01 SELECT livestreams
+#   20 0x9AC623FA477E73A44D191D296850A025   4.8475  1.0%   490 0.0099  0.01 SELECT records
+# MISC 0xMISC                              35.3878  7.0% 36961 0.0010   0.0 <71 ITEMS>
+
+# Query 1: 56.58 QPS, 0.71x concurrency, ID 0x42EF7D7D98FBCC9723BF896EBFC51D24 at byte 24783180
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2023-11-25T05:49:19 to 2023-11-25T05:50:55
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          1    5432
+# Exec time     13     68s   852us    97ms    13ms    40ms    13ms     9ms
+# Lock time      1    20ms       0     2ms     3us     1us    44us     1us
+# Rows sent      0   1.72k       0       1    0.32    0.99    0.46       0
+# Rows examine   5   7.30M   1.25k   1.49k   1.38k   1.46k   71.10   1.33k
+# Query size     2 742.50k     129     211  139.97  158.58   10.77  136.99
+# String:
+# Databases    isudns
+# Hosts        localhost
+# Users        isudns
+# Query_time distribution
+#   1us
+#  10us
+# 100us  #
+#   1ms  ################################################################
+#  10ms  ########################################################
+# 100ms  #
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isudns` LIKE 'records'\G
+#    SHOW CREATE TABLE `isudns`.`records`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT content,ttl,prio,type,domain_id,disabled,name,auth FROM records WHERE disabled=0 and name='iyamamoto1.u.isucon.dev' and domain_id=2\G
+
+# Query 2: 39.51 QPS, 0.11x concurrency, ID 0x38BC86A45F31C6B1EE324671506C898A at byte 76181438
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.00
+# Time range: 2023-11-25T05:49:31 to 2023-11-25T05:58:18
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          7   20822
+# Exec time     11     56s   256us    44ms     3ms     8ms     3ms     2ms
+# Lock time      7    75ms       0     4ms     3us     1us    60us     1us
+# Rows sent      5  20.33k       1       1       1       1       0       1
+# Rows examine  15  22.17M    1000   1.21k   1.09k   1.20k   74.10   1.04k
+# Query size     2 831.38k      38      41   40.89   40.45    0.59   40.45
+# String:
+# Databases    isupipe
+# Hosts        localhost
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us  ############################################
+#   1ms  ################################################################
+#  10ms  ###
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'themes'\G
+#    SHOW CREATE TABLE `isupipe`.`themes`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM themes WHERE user_id = 1039\G
+
+# Query 3: 9.56 QPS, 0.10x concurrency, ID 0xF1B8EF06D6CA63B24BFF433E06CCEB22 at byte 23602570
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2023-11-25T05:49:31 to 2023-11-25T05:58:31
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          1    5161
+# Exec time     10     51s     1ms    79ms    10ms    33ms    11ms     5ms
+# Lock time      1    12ms       0     2ms     2us     1us    30us     1us
+# Rows sent      1   5.04k       1       1       1       1       0       1
+# Rows examine   7  11.03M   1.96k   2.80k   2.19k   2.76k  315.21   1.96k
+# Query size     2 830.66k     163     166  164.81  158.58       0  158.58
+# String:
+# Databases    isupipe
+# Hosts        localhost
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms  ################################################################
+#  10ms  #####################################
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'users'\G
+#    SHOW CREATE TABLE `isupipe`.`users`\G
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'livestreams'\G
+#    SHOW CREATE TABLE `isupipe`.`livestreams`\G
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'livecomments'\G
+#    SHOW CREATE TABLE `isupipe`.`livecomments`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT IFNULL(SUM(l2.tip), 0) FROM users u
+		INNER JOIN livestreams l ON l.user_id = u.id	
+		INNER JOIN livecomments l2 ON l2.livestream_id = l.id
+		WHERE u.id = 102\G
+
+# Query 4: 9.56 QPS, 0.09x concurrency, ID 0xDB74D52D39A7090F224C4DEEAF3028C9 at byte 59375545
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2023-11-25T05:49:31 to 2023-11-25T05:58:31
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          1    5165
+# Exec time      9     48s     1ms    78ms     9ms    31ms    11ms     5ms
+# Lock time      1    13ms       0     2ms     2us     1us    37us     1us
+# Rows sent      1   5.04k       1       1       1       1       0       1
+# Rows examine   7  11.02M   1.96k   2.75k   2.19k   2.62k  276.90   1.96k
+# Query size     2 730.42k     143     146  144.81  143.84    0.85  143.84
+# String:
+# Databases    isupipe
+# Hosts        localhost
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms  ################################################################
+#  10ms  #################################
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'users'\G
+#    SHOW CREATE TABLE `isupipe`.`users`\G
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'livestreams'\G
+#    SHOW CREATE TABLE `isupipe`.`livestreams`\G
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'reactions'\G
+#    SHOW CREATE TABLE `isupipe`.`reactions`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT COUNT(*) FROM users u
+		INNER JOIN livestreams l ON l.user_id = u.id
+		INNER JOIN reactions r ON r.livestream_id = l.id
+		WHERE u.id = 264\G
+
+# Query 5: 761.82 QPS, 0.68x concurrency, ID 0x4ADE2DC90689F1C4891749AF54FB8D14 at byte 59342472
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.00
+# Time range: 2023-11-25T05:49:54 to 2023-11-25T05:50:55
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count         16   46471
+# Exec time      8     42s    99us    51ms   895us     3ms     1ms   316us
+# Lock time     16   178ms       0    15ms     3us     1us    93us     1us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   0  90.78k       2       4    2.00    1.96    0.02    1.96
+# Query size    43  14.63M     263     529  330.11  363.48   26.81  313.99
+# String:
+# Databases    isupipe
+# Hosts        localhost
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us  ################################################################
+#   1ms  #######################
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'livecomments'\G
+#    SHOW CREATE TABLE `isupipe`.`livecomments`\G
+DELETE FROM livecomments
+			WHERE
+			id = 347 AND
+			livestream_id = 7540 AND
+			(SELECT COUNT(*)
+			FROM
+			(SELECT '次に何の話をするか、ヒントくれる？当てたら、ご褒美欲しいな。' AS text) AS texts
+			INNER JOIN
+			(SELECT CONCAT('%', '無蛛', '%')	AS pattern) AS patterns
+			ON texts.text LIKE patterns.pattern) >= 1\G
+# Converted for EXPLAIN
+# EXPLAIN /*!50100 PARTITIONS*/
+select * from  livecomments
+			WHERE
+			id = 347 AND
+			livestream_id = 7540 AND
+			(SELECT COUNT(*)
+			FROM
+			(SELECT '次に何の話をするか、ヒントくれる？当てたら、ご褒美欲しいな。' AS text) AS texts
+			INNER JOIN
+			(SELECT CONCAT('%', '無蛛', '%')	AS pattern) AS patterns
+			ON texts.text LIKE patterns.pattern) >= 1\G
+
+# Query 6: 44.39 QPS, 0.30x concurrency, ID 0x3D83BC87F3B3A00D571FFC8104A6E50C at byte 52425505
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2023-11-25T05:49:19 to 2023-11-25T05:50:55
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          1    4261
+# Exec time      5     29s   669us    56ms     7ms    19ms     7ms     4ms
+# Lock time      1    15ms       0     4ms     3us     1us    57us     1us
+# Rows sent      0   2.19k       0       1    0.53    0.99    0.50    0.99
+# Rows examine   4   5.72M   1.25k   1.49k   1.37k   1.46k   71.81   1.33k
+# Query size     1 555.78k     126     210  133.57  151.03    9.93  124.25
+# String:
+# Databases    isudns
+# Hosts        localhost
+# Users        isudns
+# Query_time distribution
+#   1us
+#  10us
+# 100us  ##
+#   1ms  ################################################################
+#  10ms  ########################
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isudns` LIKE 'records'\G
+#    SHOW CREATE TABLE `isudns`.`records`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT content,ttl,prio,type,domain_id,disabled,name,auth FROM records WHERE disabled=0 and type='SOA' and name='u.isucon.dev'\G
+
+# Query 7: 103.24 QPS, 0.05x concurrency, ID 0xFBC5564AE716EAE82F20BFB45F6C37E7 at byte 67620904
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.00
+# Time range: 2023-11-25T05:49:48 to 2023-11-25T05:58:18
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count         18   52653
+# Exec time      4     25s    46us    31ms   480us     2ms   948us   144us
+# Lock time     21   224ms       0    17ms     4us     1us   101us     1us
+# Rows sent     14  51.42k       1       1       1       1       0       1
+# Rows examine   0  51.42k       1       1       1       1       0       1
+# Query size     4   1.60M      31      33   31.84   31.70    0.57   31.70
+# String:
+# Databases    isupipe
+# Hosts        localhost
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  ##################################################
+# 100us  ################################################################
+#   1ms  ################
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'tags'\G
+#    SHOW CREATE TABLE `isupipe`.`tags`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM tags WHERE id = 14\G
+
+# Query 8: 52.88 QPS, 0.05x concurrency, ID 0xFD38427AE3D09E3883A680F7BAF95D3A at byte 94226893
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.00
+# Time range: 2023-11-25T05:49:33 to 2023-11-25T05:58:31
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          9   28450
+# Exec time      4     25s   288us    20ms   867us     3ms   925us   332us
+# Lock time      3    34ms       0   790us     1us     1us     9us     1us
+# Rows sent      7  27.78k       1       1       1       1       0       1
+# Rows examine  23  32.73M    1001   1.40k   1.18k   1.39k  216.50  964.41
+# Query size     9   3.25M     117     120  119.73  118.34    0.87  118.34
+# String:
+# Databases    isupipe
+# Hosts        localhost
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us  ################################################################
+#   1ms  ##################
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'livestreams'\G
+#    SHOW CREATE TABLE `isupipe`.`livestreams`\G
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'livecomments'\G
+#    SHOW CREATE TABLE `isupipe`.`livecomments`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT IFNULL(SUM(l2.tip), 0) FROM livestreams l INNER JOIN livecomments l2 ON l.id = l2.livestream_id WHERE l.id = 2442\G
+
+# Query 9: 5.82 QPS, 0.31x concurrency, ID 0x64CC8A4E8E4B390203375597CE4D611F at byte 57962373
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2023-11-25T05:49:39 to 2023-11-25T05:50:55
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          0     442
+# Exec time      4     23s     4ms   135ms    53ms    87ms    22ms    51ms
+# Lock time      0   745us       0   152us     1us     1us     8us     1us
+# Rows sent      0     200       0       2    0.45    1.96    0.62       0
+# Rows examine   4   6.05M  14.00k  14.03k  14.01k  13.78k    0.00  13.78k
+# Query size     0  42.73k      97      99   98.99   97.36    0.31   97.36
+# String:
+# Databases    isupipe
+# Hosts        localhost
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms  ##
+#  10ms  ################################################################
+# 100ms  ##
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'ng_words'\G
+#    SHOW CREATE TABLE `isupipe`.`ng_words`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT id, user_id, livestream_id, word FROM ng_words WHERE user_id = 1015 AND livestream_id = 7533\G
+
+# Query 10: 10.39 QPS, 0.26x concurrency, ID 0x59F1B6DD8D9FEC059E55B3BFD624E8C3 at byte 43760352
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2023-11-25T05:49:31 to 2023-11-25T05:50:55
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          0     873
+# Exec time      4     22s     2ms    86ms    25ms    53ms    15ms    22ms
+# Lock time      1    17ms       0    14ms    19us     1us   482us     1us
+# Rows sent      0     873       1       1       1       1       0       1
+# Rows examine   5   7.29M   8.55k   8.55k   8.55k   8.55k       0   8.55k
+# Query size     0  73.32k      86      86      86      86       0      86
+# String:
+# Databases    isupipe
+# Hosts        localhost
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms  ##############
+#  10ms  ################################################################
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'reservation_slots'\G
+#    SHOW CREATE TABLE `isupipe`.`reservation_slots`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT slot FROM reservation_slots WHERE start_at = 1701151200 AND end_at = 1701154800\G
+
+# Query 11: 52.88 QPS, 0.04x concurrency, ID 0xC499D81D570D361DB61FC43A94BB888A at byte 94007073
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.00
+# Time range: 2023-11-25T05:49:33 to 2023-11-25T05:58:31
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          9   28451
+# Exec time      4     21s   249us    16ms   723us     2ms   775us   301us
+# Lock time      3    36ms       0   859us     1us     1us    12us     1us
+# Rows sent      7  27.78k       1       1       1       1       0       1
+# Rows examine  22  32.43M    1001   1.38k   1.17k   1.33k  196.02  964.41
+# Query size     8   2.73M      98     101  100.73   97.36       0   97.36
+# String:
+# Databases    isupipe
+# Hosts        localhost
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us  ################################################################
+#   1ms  #################
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'livestreams'\G
+#    SHOW CREATE TABLE `isupipe`.`livestreams`\G
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'reactions'\G
+#    SHOW CREATE TABLE `isupipe`.`reactions`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT COUNT(*) FROM livestreams l INNER JOIN reactions r ON l.id = r.livestream_id WHERE l.id = 2386\G
+
+# Query 12: 5.95 QPS, 0.02x concurrency, ID 0xFFFCA4D67EA0A788813031B8BBC3B329 at byte 22239612
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.00
+# Time range: 2023-11-25T05:49:30 to 2023-11-25T05:58:18
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          1    3139
+# Exec time      2     11s    21us    31ms     4ms    11ms     4ms     3ms
+# Lock time      0       0       0       0       0       0       0       0
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   0       0       0       0       0       0       0       0
+# Query size     0  18.39k       6       6       6       6       0       6
+# String:
+# Databases    isupipe (2893/92%), isudns (246/7%)
+# Hosts        localhost
+# Users        isucon (2893/92%), isudns (246/7%)
+# Query_time distribution
+#   1us
+#  10us  ################################
+# 100us  ##############
+#   1ms  ################################################################
+#  10ms  #######
+# 100ms
+#    1s
+#  10s+
+COMMIT\G
+
+# Query 13: 39.03 QPS, 0.02x concurrency, ID 0xEA1E6309EEEFF9A6831AD2FB940FC23C at byte 72946199
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.00
+# Time range: 2023-11-25T05:49:31 to 2023-11-25T05:58:18
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          7   20569
+# Exec time      2     11s    51us    33ms   513us     2ms     1ms   152us
+# Lock time      6    73ms       0     3ms     3us     1us    49us     1us
+# Rows sent      5  20.09k       1       1       1       1       0       1
+# Rows examine   0  20.09k       1       1       1       1       0       1
+# Query size     2 700.73k      32      35   34.89   34.95    0.58   34.95
+# String:
+# Databases    isupipe
+# Hosts        localhost
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  #########################################
+# 100us  ################################################################
+#   1ms  ################
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'users'\G
+#    SHOW CREATE TABLE `isupipe`.`users`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM users WHERE id = 1039\G
+
+# Query 14: 24.23 QPS, 0.02x concurrency, ID 0xF7144185D9A142A426A36DC55C1D2623 at byte 65284185
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.00
+# Time range: 2023-11-25T05:49:31 to 2023-11-25T05:58:18
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          4   12771
+# Exec time      1     10s    79us    30ms   748us     3ms     1ms   194us
+# Lock time      7    77ms       0     9ms     5us     1us   139us     1us
+# Rows sent     14  51.42k       0      11    4.12    4.96    1.63    4.96
+# Rows examine   0  51.42k       0      11    4.12    4.96    1.63    4.96
+# Query size     2 698.17k      53      56   55.98   54.21    0.11   54.21
+# String:
+# Databases    isupipe
+# Hosts        localhost
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  #
+# 100us  ################################################################
+#   1ms  #################
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'livestream_tags'\G
+#    SHOW CREATE TABLE `isupipe`.`livestream_tags`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM livestream_tags WHERE livestream_id = 7540\G
+
+# Query 15: 18.92 QPS, 0.01x concurrency, ID 0xD6032FE08E1FE706A928B8B7CBA06B85 at byte 28371640
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.00
+# Time range: 2023-11-25T05:49:33 to 2023-11-25T05:58:18
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          3    9935
+# Exec time      1      6s    62us    30ms   559us     2ms     1ms   144us
+# Lock time      5    56ms       0     7ms     5us     1us    97us     1us
+# Rows sent      2   9.70k       1       1       1       1       0       1
+# Rows examine   0   9.70k       1       1       1       1       0       1
+# Query size     1 397.55k      38      41   40.98   40.45    0.29   40.45
+# String:
+# Databases    isupipe
+# Hosts        localhost
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us  ####################################
+# 100us  ################################################################
+#   1ms  #################
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'livestreams'\G
+#    SHOW CREATE TABLE `isupipe`.`livestreams`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM livestreams WHERE id = 7531\G
+
+# Query 16: 64.73 QPS, 0.06x concurrency, ID 0x22279D81D51006139E0C76405B54C261 at byte 65283364
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.00
+# Time range: 2023-11-25T05:49:19 to 2023-11-25T05:50:55
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          2    6214
+# Exec time      1      5s    85us    30ms   880us     3ms     2ms   287us
+# Lock time      3    40ms     1us     5ms     6us     1us    92us     1us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   0       0       0       0       0       0       0       0
+# Query size     1 691.79k     114     114     114     114       0     114
+# String:
+# Databases    isudns
+# Hosts        localhost
+# Users        isudns
+# Query_time distribution
+#   1us
+#  10us  #
+# 100us  ################################################################
+#   1ms  ###################
+#  10ms  #
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isudns` LIKE 'domains'\G
+#    SHOW CREATE TABLE `isudns`.`domains`\G
+#    SHOW TABLE STATUS FROM `isudns` LIKE 'domainmetadata'\G
+#    SHOW CREATE TABLE `isudns`.`domainmetadata`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+select kind,content from domains, domainmetadata where domainmetadata.domain_id=domains.id and name='u.isucon.dev'\G
+
+# Query 17: 3.66 QPS, 0.08x concurrency, ID 0x859BBB7E9D760686137A944406874C4D at byte 63827710
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2023-11-25T05:49:48 to 2023-11-25T05:50:55
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          0     245
+# Exec time      1      5s     2ms    78ms    22ms    42ms    13ms    20ms
+# Lock time     14   151ms       0    57ms   618us     1us     4ms     1us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   0 335.44k   1.25k   1.49k   1.37k   1.46k   73.30   1.33k
+# Query size     0  20.49k      78      93   85.64   88.31    3.35   84.10
+# String:
+# Databases    isudns
+# Hosts        localhost
+# Users        isudns
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms  #############
+#  10ms  ################################################################
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isudns` LIKE 'records'\G
+#    SHOW CREATE TABLE `isudns`.`records`\G
+delete from records where domain_id=2 and name='shoheisato0.u.isucon.dev' and type='A'\G
+# Converted for EXPLAIN
+# EXPLAIN /*!50100 PARTITIONS*/
+select * from  records where domain_id=2 and name='shoheisato0.u.isucon.dev' and type='A'\G
+
+# Query 18: 1.22 QPS, 0.06x concurrency, ID 0xA3401CA3ABCC04C3AB221DB8AD5CBF26 at byte 33187262
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.02
+# Time range: 2023-11-25T05:49:31 to 2023-11-25T05:50:54
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          0     101
+# Exec time      1      5s     5ms   133ms    51ms   105ms    35ms    51ms
+# Lock time      0   121us       0    20us     1us     1us     1us     1us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows examine   0 863.92k   8.55k   8.55k   8.55k   8.55k       0   8.55k
+# Query size     0   9.67k      98      98      98      98       0      98
+# String:
+# Databases    isupipe
+# Hosts        localhost
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms  ##########################
+#  10ms  ################################################################
+# 100ms  ###########
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'reservation_slots'\G
+#    SHOW CREATE TABLE `isupipe`.`reservation_slots`\G
+UPDATE reservation_slots SET slot = slot - 1 WHERE start_at >= 1701050400 AND end_at <= 1701082800\G
+# Converted for EXPLAIN
+# EXPLAIN /*!50100 PARTITIONS*/
+select  slot = slot - 1 from reservation_slots where  start_at >= 1701050400 AND end_at <= 1701082800\G
+
+# Query 19: 0.19 QPS, 0.01x concurrency, ID 0x9EAD6C0CE525E3693EE27FFC9AAF05A3 at byte 44679138
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2023-11-25T05:49:33 to 2023-11-25T05:58:18
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          0     100
+# Exec time      0      5s     4ms   113ms    50ms    95ms    27ms    48ms
+# Lock time      0     2ms       0     2ms    17us     1us   149us     1us
+# Rows sent      0     156       0      21    1.56    6.98    3.78       0
+# Rows examine   0 736.80k   7.32k   7.42k   7.37k   7.31k       0   7.31k
+# Query size     0   4.48k      43      46   45.87   44.60    0.46   44.60
+# String:
+# Databases    isupipe
+# Hosts        localhost
+# Users        isucon
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms  #####
+#  10ms  ################################################################
+# 100ms  #####
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isupipe` LIKE 'livestreams'\G
+#    SHOW CREATE TABLE `isupipe`.`livestreams`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT * FROM livestreams WHERE user_id = 1017\G
+
+# Query 20: 7.31 QPS, 0.07x concurrency, ID 0x9AC623FA477E73A44D191D296850A025 at byte 23200159
+# This item is included in the report because it matches --limit.
+# Scores: V/M = 0.01
+# Time range: 2023-11-25T05:49:48 to 2023-11-25T05:50:55
+# Attribute    pct   total     min     max     avg     95%  stddev  median
+# ============ === ======= ======= ======= ======= ======= ======= =======
+# Count          0     490
+# Exec time      0      5s     1ms    76ms    10ms    34ms    11ms     5ms
+# Lock time      0   627us       0   106us     1us     1us     4us     1us
+# Rows sent      0     245       0       1    0.50    0.99    0.50    0.99
+# Rows examine   0 671.09k   1.25k   1.49k   1.37k   1.46k   73.26   1.33k
+# Query size     0  72.56k     144     159  151.64  151.03    3.72  151.03
+# String:
+# Databases    isudns
+# Hosts        localhost
+# Users        isudns
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms  ################################################################
+#  10ms  ##############################
+# 100ms
+#    1s
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `isudns` LIKE 'records'\G
+#    SHOW CREATE TABLE `isudns`.`records`\G
+# EXPLAIN /*!50100 PARTITIONS*/
+SELECT content,ttl,prio,type,domain_id,disabled,name,auth FROM records WHERE disabled=0 and type='A' and name='junishikawa0.u.isucon.dev' and domain_id=2\G

@@ -234,15 +234,54 @@ func getLivestreamStatisticsHandler(c echo.Context) error {
 
 	// ランク算出
 	var ranking LivestreamRanking
+
+	// reactionを集計
+	type ReactionList struct {
+		LivestreamID int64 `db:"livestream_id"`
+		Reactions    int64 `db:"reactions"`
+	}
+	var reactionsList []*ReactionList
+	query := `
+    SELECT l.id livestream_id, COUNT(*) reactions
+    FROM livestreams l 
+    INNER JOIN reactions r ON l.id = r.livestream_id 
+    GROUP BY l.id;
+  `
+	if err := tx.SelectContext(ctx, &reactionsList, query); err != nil && !errors.Is(err, sql.ErrNoRows) {
+		return echo.NewHTTPError(http.StatusInternalServerError, "failed to get reactions: "+err.Error())
+	}
+
+	// totaoTipsを集計
+	type TotalTipsList struct {
+		LivestreamID int64 `db:"livestream_id"`
+		TotalTips    int64 `db:"total_tips"`
+	}
+	var totalTipsList []*TotalTipsList
+	query = `
+    SELECT l.id livestream_id, IFNULL(SUM(l2.tip), 0) total_tips
+    FROM livestreams l 
+    INNER JOIN livecomments l2 ON l.id = l2.livestream_id 
+    GROUP BY l.id;
+  `
+	if err := tx.SelectContext(ctx, &totalTipsList, query); err != nil && !errors.Is(err, sql.ErrNoRows) {
+		return echo.NewHTTPError(http.StatusInternalServerError, "failed to get total tips: "+err.Error())
+	}
+
 	for _, livestream := range livestreams {
 		var reactions int64
-		if err := tx.GetContext(ctx, &reactions, "SELECT COUNT(*) FROM livestreams l INNER JOIN reactions r ON l.id = r.livestream_id WHERE l.id = ?", livestream.ID); err != nil && !errors.Is(err, sql.ErrNoRows) {
-			return echo.NewHTTPError(http.StatusInternalServerError, "failed to count reactions: "+err.Error())
+		for _, r := range reactionsList {
+			if r.LivestreamID == livestream.ID {
+				reactions = r.Reactions
+				break
+			}
 		}
 
 		var totalTips int64
-		if err := tx.GetContext(ctx, &totalTips, "SELECT IFNULL(SUM(l2.tip), 0) FROM livestreams l INNER JOIN livecomments l2 ON l.id = l2.livestream_id WHERE l.id = ?", livestream.ID); err != nil && !errors.Is(err, sql.ErrNoRows) {
-			return echo.NewHTTPError(http.StatusInternalServerError, "failed to count tips: "+err.Error())
+		for _, t := range totalTipsList {
+			if t.LivestreamID == livestream.ID {
+				totalTips = t.TotalTips
+				break
+			}
 		}
 
 		score := reactions + totalTips
