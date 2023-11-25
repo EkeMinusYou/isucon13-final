@@ -130,7 +130,7 @@ func postIconHandler(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, "failed to decode the request body as json")
 	}
 
-	if err := os.WriteFile(fmt.Sprintf("../icons/%d.jpg", userID), req.Image, 0666); err != nil {
+	if err := os.WriteFile(fmt.Sprintf("./icons/%d.jpg", userID), req.Image, 0666); err != nil {
 		fmt.Println("failed to write icon file: " + err.Error())
 	}
 
