@@ -113,8 +113,10 @@ after-bench:
 	pt-query-digest slowquery/log/mysql-slow.log > slowquery/pt-query-digest.log
 	mkdir -p profile
 	[ -e "profile/cpu.pprof" ] && mv profile/cpu.pprof profile/cpu_`date +%Y%m%d-%H%M%S`.pprof || true
+	[ -e "profile/fcpu.pprof" ] && mv profile/fcpu.pprof profile/fcpu_`date +%Y%m%d-%H%M%S`.pprof || true
 	ssh $(SSH_USER)@$(WEBAPP_HOST) "sudo systemctl stop $(APP_NAME)-go"
 	rsync -az -e ssh $(SSH_USER)@$(WEBAPP_HOST):/home/$(ISUCON_USER)/webapp/go/cpu.pprof profile/ --rsync-path="sudo rsync"  || true
+	rsync -az -e ssh $(SSH_USER)@$(WEBAPP_HOST):/home/$(ISUCON_USER)/webapp/go/fcpu.pprof profile/ --rsync-path="sudo rsync"  || true
 	ssh $(SSH_USER)@$(WEBAPP_HOST) "sudo systemctl start $(APP_NAME)-go"
 
 .PHONY: clear-cache
