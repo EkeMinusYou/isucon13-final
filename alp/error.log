@@ -180,3 +180,8 @@
 2023/11/25 07:37:18 [notice] 71519#71519: signal process started
 2023/11/25 07:41:11 [notice] 72808#72808: signal process started
 2023/11/25 07:41:22 [notice] 73701#73701: signal process started
+2023/11/25 07:55:19 [notice] 75259#75259: signal process started
+2023/11/25 07:57:19 [notice] 76006#76006: signal process started
+2023/11/25 07:59:38 [notice] 76753#76753: signal process started
+2023/11/25 08:00:06 [error] 72866#72866: *12548 upstream prematurely closed connection while reading response header from upstream, client: 18.183.53.24, server: u.isucon.dev, request: "POST /api/livestream/reservation HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/reservation", host: "3G4kkchmqA.u.isucon.dev:443"
+2023/11/25 08:01:34 [notice] 77505#77505: signal process started
