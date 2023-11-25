@@ -2,6 +2,9 @@ SSH_USER:=isucon
 ISUCON_USER:=isucon
 APP_NAME:=isupipe
 
+ISUCON_1:=isucon-1
+ISUCON_2:=isucon-2
+ISUCON_3:=isucon-3
 NGINX_HOST:=isucon-1
 WEBAPP_HOST:=isucon-1
 MYSQL_HOST:=isucon-1
@@ -65,11 +68,11 @@ deploy: deploy-sysctl deploy-nginx deploy-webapp deploy-mysql
 .PHONY: deploy-sysctl
 deploy-sysctl:
 	rsync -az -e ssh etc/sysctl.conf $(SSH_USER)@$(NGINX_HOST):/etc/ --rsync-path="sudo rsync"
-	ssh $(SSH_USER)@$(NGINX_HOST) "sudo sysctl -p"
+	ssh $(SSH_USER)@$(ISUCON_1) "sudo sysctl -p"
 	rsync -az -e ssh etc/sysctl.conf $(SSH_USER)@$(WEBAPP_HOST):/etc/ --rsync-path="sudo rsync"
-	ssh $(SSH_USER)@$(WEBAPP_HOST) "sudo sysctl -p"
+	ssh $(SSH_USER)@$(ISUCON_2) "sudo sysctl -p"
 	rsync -az -e ssh etc/sysctl.conf $(SSH_USER)@$(MYSQL_HOST):/etc/ --rsync-path="sudo rsync"
-	ssh $(SSH_USER)@$(MYSQL_HOST) "sudo sysctl -p"
+	ssh $(SSH_USER)@$(ISUCON_3) "sudo sysctl -p"
 
 .PHONY: deploy-nginx
 deploy-nginx:
