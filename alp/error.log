@@ -48,3 +48,116 @@
 2023/11/25 04:13:49 [error] 14589#14589: *23723 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/6993/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/6993/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
 2023/11/25 04:13:49 [error] 14588#14588: *23713 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/7511/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/7511/statistics", host: "pipe.u.isucon.dev", referrer: "https://pipe.u.isucon.dev/"
 2023/11/25 04:13:49 [error] 14588#14588: *23702 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/7509/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/7509/statistics", host: "pipe.u.isucon.dev", referrer: "https://pipe.u.isucon.dev/"
+2023/11/25 04:22:26 [notice] 30110#30110: signal process started
+2023/11/25 04:23:05 [notice] 31325#31325: signal process started
+2023/11/25 04:26:08 [error] 30169#30169: *142 upstream timed out (110: Unknown error) while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/1998/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/1998/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 04:26:08 [error] 30169#30169: *152 upstream timed out (110: Unknown error) while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/4995/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/4995/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 04:30:17 [notice] 31688#31688: signal process started
+2023/11/25 04:30:55 [notice] 31850#31850: signal process started
+2023/11/25 04:31:01 [alert] 31748#31748: *19 open socket #8 left in connection 3
+2023/11/25 04:31:01 [alert] 31747#31747: *39 open socket #11 left in connection 4
+2023/11/25 04:31:01 [alert] 31748#31748: *28 open socket #15 left in connection 4
+2023/11/25 04:31:01 [alert] 31747#31747: *43 open socket #12 left in connection 7
+2023/11/25 04:31:01 [alert] 31748#31748: *27 open socket #14 left in connection 5
+2023/11/25 04:31:01 [alert] 31748#31748: *26 open socket #13 left in connection 6
+2023/11/25 04:31:01 [alert] 31748#31748: *29 open socket #16 left in connection 7
+2023/11/25 04:31:01 [alert] 31748#31748: *20 open socket #9 left in connection 8
+2023/11/25 04:31:01 [alert] 31747#31747: aborting
+2023/11/25 04:31:01 [alert] 31748#31748: *17 open socket #17 left in connection 9
+2023/11/25 04:31:01 [alert] 31748#31748: *18 open socket #18 left in connection 10
+2023/11/25 04:31:01 [alert] 31748#31748: *30 open socket #19 left in connection 11
+2023/11/25 04:31:01 [alert] 31748#31748: *31 open socket #20 left in connection 12
+2023/11/25 04:31:01 [alert] 31748#31748: *32 open socket #21 left in connection 13
+2023/11/25 04:31:01 [alert] 31748#31748: *33 open socket #22 left in connection 14
+2023/11/25 04:31:01 [alert] 31748#31748: *34 open socket #23 left in connection 15
+2023/11/25 04:31:01 [alert] 31748#31748: *35 open socket #24 left in connection 16
+2023/11/25 04:31:01 [alert] 31748#31748: *41 open socket #25 left in connection 17
+2023/11/25 04:31:01 [alert] 31748#31748: *40 open socket #26 left in connection 18
+2023/11/25 04:31:01 [alert] 31748#31748: *38 open socket #27 left in connection 19
+2023/11/25 04:31:01 [alert] 31748#31748: *46 open socket #29 left in connection 20
+2023/11/25 04:31:01 [alert] 31748#31748: *45 open socket #28 left in connection 21
+2023/11/25 04:31:01 [alert] 31748#31748: *47 open socket #30 left in connection 22
+2023/11/25 04:31:01 [alert] 31748#31748: *48 open socket #31 left in connection 23
+2023/11/25 04:31:01 [alert] 31748#31748: *49 open socket #32 left in connection 24
+2023/11/25 04:31:01 [alert] 31748#31748: aborting
+2023/11/25 04:31:07 [error] 31908#31908: *2 upstream prematurely closed connection while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/user/test001/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/user/test001/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 04:31:07 [error] 31909#31909: *1 upstream prematurely closed connection while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/4995/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/4995/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 04:31:08 [notice] 32448#32448: signal process started
+2023/11/25 04:31:11 [error] 31908#31908: *2 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/5994/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/5994/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 04:31:11 [error] 31909#31909: *1 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/6993/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/6993/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 04:31:11 [error] 31908#31908: *2 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/999/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/999/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 04:31:11 [error] 31909#31909: *1 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/1998/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/1998/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 04:31:11 [error] 31909#31909: *7 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/2997/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/2997/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 04:31:11 [error] 31909#31909: *8 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/3996/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/3996/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 04:38:38 [notice] 33208#33208: signal process started
+2023/11/25 04:40:52 [notice] 33508#33508: signal process started
+2023/11/25 04:46:50 [notice] 34528#34528: signal process started
+2023/11/25 04:46:56 [alert] 33565#33565: *78 open socket #13 left in connection 3
+2023/11/25 04:46:56 [alert] 33565#33565: *71 open socket #12 left in connection 4
+2023/11/25 04:46:56 [alert] 33565#33565: *69 open socket #11 left in connection 5
+2023/11/25 04:46:56 [alert] 33565#33565: *80 open socket #14 left in connection 6
+2023/11/25 04:46:56 [alert] 33565#33565: aborting
+2023/11/25 04:46:56 [alert] 33566#33566: *99 open socket #29 left in connection 3
+2023/11/25 04:46:56 [alert] 33566#33566: *89 open socket #21 left in connection 4
+2023/11/25 04:46:56 [alert] 33566#33566: *96 open socket #26 left in connection 5
+2023/11/25 04:46:56 [alert] 33566#33566: *100 open socket #30 left in connection 6
+2023/11/25 04:46:56 [alert] 33566#33566: *82 open socket #16 left in connection 7
+2023/11/25 04:46:56 [alert] 33566#33566: *93 open socket #25 left in connection 10
+2023/11/25 04:46:56 [alert] 33566#33566: *86 open socket #20 left in connection 11
+2023/11/25 04:46:56 [alert] 33566#33566: *83 open socket #17 left in connection 12
+2023/11/25 04:46:56 [alert] 33566#33566: *95 open socket #22 left in connection 14
+2023/11/25 04:46:56 [alert] 33566#33566: *81 open socket #15 left in connection 15
+2023/11/25 04:46:56 [alert] 33566#33566: *97 open socket #27 left in connection 16
+2023/11/25 04:46:56 [alert] 33566#33566: *98 open socket #28 left in connection 17
+2023/11/25 04:46:56 [alert] 33566#33566: *68 open socket #8 left in connection 18
+2023/11/25 04:46:56 [alert] 33566#33566: *91 open socket #23 left in connection 19
+2023/11/25 04:46:56 [alert] 33566#33566: *77 open socket #13 left in connection 20
+2023/11/25 04:46:56 [alert] 33566#33566: *84 open socket #18 left in connection 22
+2023/11/25 04:46:56 [alert] 33566#33566: *79 open socket #14 left in connection 23
+2023/11/25 04:46:56 [alert] 33566#33566: *70 open socket #9 left in connection 24
+2023/11/25 04:46:56 [alert] 33566#33566: aborting
+2023/11/25 04:47:00 [notice] 35179#35179: signal process started
+2023/11/25 04:47:10 [notice] 35466#35466: signal process started
+2023/11/25 05:04:41 [error] 34594#34594: *32 upstream prematurely closed connection while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/4995/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/4995/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:04:41 [error] 34594#34594: *19 upstream prematurely closed connection while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/3996/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/3996/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:04:41 [error] 34594#34594: *24 upstream prematurely closed connection while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/5994/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/5994/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:04:41 [error] 34594#34594: *12 upstream prematurely closed connection while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/7512/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/7512/statistics", host: "pipe.u.isucon.dev", referrer: "https://pipe.u.isucon.dev/"
+2023/11/25 05:04:41 [error] 34594#34594: *11 upstream prematurely closed connection while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/7513/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/7513/statistics", host: "pipe.u.isucon.dev", referrer: "https://pipe.u.isucon.dev/"
+2023/11/25 05:04:41 [error] 34594#34594: *13 upstream prematurely closed connection while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/7514/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/7514/statistics", host: "pipe.u.isucon.dev", referrer: "https://pipe.u.isucon.dev/"
+2023/11/25 05:04:41 [error] 34594#34594: *10 upstream prematurely closed connection while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/7515/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/7515/statistics", host: "pipe.u.isucon.dev", referrer: "https://pipe.u.isucon.dev/"
+2023/11/25 05:04:41 [error] 34594#34594: *1 upstream prematurely closed connection while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/7517/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/7517/statistics", host: "pipe.u.isucon.dev", referrer: "https://pipe.u.isucon.dev/"
+2023/11/25 05:04:41 [error] 34593#34593: *18 upstream prematurely closed connection while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/2997/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/2997/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:04:41 [error] 34593#34593: *20 upstream prematurely closed connection while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/1998/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/1998/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:04:41 [error] 34593#34593: *25 upstream prematurely closed connection while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/999/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/999/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:04:41 [error] 34593#34593: *2 upstream prematurely closed connection while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/7516/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/7516/statistics", host: "pipe.u.isucon.dev", referrer: "https://pipe.u.isucon.dev/"
+2023/11/25 05:04:41 [error] 34594#34594: *32 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/6993/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/6993/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:04:41 [error] 34594#34594: *19 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/tag HTTP/1.1", upstream: "http://127.0.0.1:8080/api/tag", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:04:41 [error] 34594#34594: *24 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/user/me HTTP/1.1", upstream: "http://127.0.0.1:8080/api/user/me", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:04:41 [error] 34593#34593: *18 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/user/test001 HTTP/1.1", upstream: "http://127.0.0.1:8080/api/user/test001", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:04:41 [error] 34594#34594: *10 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/7508/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/7508/statistics", host: "pipe.u.isucon.dev", referrer: "https://pipe.u.isucon.dev/"
+2023/11/25 05:04:41 [error] 34594#34594: *11 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/7510/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/7510/statistics", host: "pipe.u.isucon.dev", referrer: "https://pipe.u.isucon.dev/"
+2023/11/25 05:04:41 [error] 34594#34594: *12 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/7511/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/7511/statistics", host: "pipe.u.isucon.dev", referrer: "https://pipe.u.isucon.dev/"
+2023/11/25 05:04:41 [error] 34594#34594: *13 connect() failed (111: Unknown error) while connecting to upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/7509/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/7509/statistics", host: "pipe.u.isucon.dev", referrer: "https://pipe.u.isucon.dev/"
+2023/11/25 05:04:45 [notice] 37087#37087: signal process started
+2023/11/25 05:08:37 [error] 37152#37152: *204 upstream timed out (110: Unknown error) while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/3996/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/3996/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:08:37 [error] 37151#37151: *209 upstream timed out (110: Unknown error) while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/4995/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/4995/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:09:52 [notice] 38544#38544: signal process started
+2023/11/25 05:13:18 [error] 38609#38609: *89 upstream timed out (110: Unknown error) while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/2997/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/2997/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:13:18 [error] 38609#38609: *128 upstream timed out (110: Unknown error) while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/4995/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/4995/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:20:48 [notice] 38911#38911: signal process started
+2023/11/25 05:23:57 [notice] 40054#40054: signal process started
+2023/11/25 05:27:59 [error] 38970#38970: *142 upstream timed out (110: Unknown error) while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/999/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/999/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:27:59 [error] 38970#38970: *140 upstream timed out (110: Unknown error) while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/1998/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/1998/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:27:59 [error] 38969#38969: *139 upstream timed out (110: Unknown error) while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/3996/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/3996/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:27:59 [error] 38970#38970: *143 upstream timed out (110: Unknown error) while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/2997/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/2997/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:27:59 [error] 38970#38970: *141 upstream timed out (110: Unknown error) while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/4995/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/4995/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:28:55 [notice] 41324#41324: signal process started
+2023/11/25 05:29:00 [alert] 38970#38970: *143 open socket #14 left in connection 7
+2023/11/25 05:29:00 [alert] 38970#38970: *4231 open socket #18 left in connection 16
+2023/11/25 05:29:00 [alert] 38970#38970: aborting
+2023/11/25 05:29:01 [notice] 41500#41500: signal process started
+2023/11/25 05:29:02 [error] 41390#41390: *1 upstream prematurely closed connection while reading response header from upstream, client: 111.217.34.99, server: u.isucon.dev, request: "GET /api/livestream/5994/statistics HTTP/1.1", upstream: "http://127.0.0.1:8080/api/livestream/5994/statistics", host: "test001.u.isucon.dev", referrer: "https://test001.u.isucon.dev/user"
+2023/11/25 05:46:42 [notice] 43103#43103: signal process started
+2023/11/25 05:46:43 [notice] 43259#43259: signal process started
+2023/11/25 05:48:23 [notice] 44036#44036: signal process started
+2023/11/25 05:49:04 [notice] 44812#44812: signal process started
